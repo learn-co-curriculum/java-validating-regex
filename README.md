@@ -159,6 +159,43 @@ Let us walk through this code a little more now:
   number examples.
 - Print the results to see if there are any matches.
 
+Another valid regular expression we could use is:
+`"\\(\\d{3}\\) ?\\d{3}-\\d{4}"`. Instead of writing out `\\d` three or four
+times, we can match the exact token by placing a quantifier directly after the
+token we're trying to match. If we use this regular expression instead in our
+`RegexExample` program:
+
+```java
+import java.util.regex.Pattern;
+
+public class RegexExample {
+    public static void main(String[] args) {
+        String phoneNumber1 = "(555) 555-1234";
+        String phoneNumber2 = "(555)555-1234";
+        String phoneNumber3 = "555-555-1234";
+        String phoneNumber4 = "5555551234";
+        String phoneNumber5 = "(555) 555-12345";
+
+        String phonePattern = "\\(\\d{3}\\) ?\\d{3}-\\d{4}";
+        System.out.println(Pattern.matches(phonePattern, phoneNumber1));
+        System.out.println(Pattern.matches(phonePattern, phoneNumber2));
+        System.out.println(Pattern.matches(phonePattern, phoneNumber3));
+        System.out.println(Pattern.matches(phonePattern, phoneNumber4));
+        System.out.println(Pattern.matches(phonePattern, phoneNumber5));
+    }
+}
+```
+
+The code above will now print out the same output that we saw before:
+
+```text
+true
+true
+false
+false
+false
+```
+
 ## Resources
 
 - [Regex 101](https://regex101.com/)
